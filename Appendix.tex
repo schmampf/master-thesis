@@ -1,0 +1,871 @@
+\addcontentsline{toc}{chapter}{Appendix}
+\chapter*{Appendix}
+%In my Labbook and files regarding my master thesis, the samples used have other names. CPW1 is Cobulk30nm, CPW2 is Cobulky32nm and CPW3 is otherwise CPW8. Attention, there is another sample labeled CPW3. No measurements exist for it, only Labbook entries of attempted sputtering of the sample.
+
+
+
+In Figure \ref{fig:analysis_mod_avg} you can find the differences in line-by-line averaging for pre-normalized transmission by fixed-field reference method or moving-field reference method.
+\begin{figure}
+     \centering
+     \begin{turn}{90}
+     \begin{subfigure}[b]{4in}
+         \centering
+         \import{analysis/modelling}{raw_avg.pgf}\\
+         \centering\small\textbf{(1)} Fixed-field reference method\\
+        %  \caption{Fixed-field reference method}
+        %  \label{fig:analysis_mod_raw_avg}
+     \end{subfigure}
+     \end{turn}
+     \hspace{.2in}
+     \begin{turn}{90}
+     \begin{subfigure}[b]{4in}
+         \centering
+         \import{analysis/modelling}{mrfm_avg.pgf}\\
+         \centering\small\textbf{(2)} Moving-field reference method\\
+        %  \caption{Moving-field reference method}
+        %  \label{fig:analysis_mod_mrfm_avg}
+     \end{subfigure}
+     \end{turn}
+    \caption[Averaged transmission of different normalized data of sample CPW2]{Line-wise frequency and magnetic field averaged transmission of sample CPW2, normalized as in Figures \ref{fig:analysis_mod}.1 and \ref{fig:analysis_mod}.1. In \textbf{(1)} and \textbf{(2)} the two normalization methods fixed-field reference and moving-field reference are shown. The normalization transmission $T_{21}^0$ is shown in \textbf{\color{antiseeblau100}a} and the averaged and normalized transmission $\widetilde{T}_{21}^\text{n}$ is shown in \textbf{\color{antiseeblau100}b}. In addition, the course of the magnetic field ${H}_\text{n}$ selected for normalization is shown in \textbf{\color{antiseeblau100}magenta}.}
+    \label{fig:analysis_mod_avg}
+\end{figure}
+
+Figure \ref{fig:analysis_temp_lowbw} shows two transmission measurements, in panel b without and in panel c with pre-amplifier. Beside that, they are made with exactly the same sample CPW3, the same setup BlueFors and the same parameters, see column CPW3 in Table \ref{tab:analysis_kittel}, separated by a warm-up and cool-down process. For frequencies above $30\,$GHz, the measurement with pre-amplifier clearly shows a more recognizable FMR signal. However, in panel b, the most recent\footnote{The measurement was completed just one week before submission.} measurement raises more questions. Features that need further investigation are on the one hand the sudden change in transmission at around $0.5\,$T, on the other hand, the feature at around $21\,$GHz.
+Otherwise, similar features around $21\,$GHz were identified as cavity modes, but shifted by a few GHz. At this point, further research should be done to see if they can be attributed to cavity modes or other effects.
+\begin{figure}
+    \centering
+    \import{analysis/temp}{lowbw_comp.pgf}
+    \caption[Normalized transmission measured without and with pre-amplifier of sample CPW3]
+    {Normalized transmission ${T}_{21}^\text{n}$ measured without (\textbf{\color{antiseeblau100}b}) and with pre-amplifier (\textbf{\color{antiseeblau100}c}) as a function of frequency $\omega/2\pi$ and magnetic field $\mu_0H$ for the sample CPW3, setup BlueFors and with the same parameters. The measurements are separated by a warm-up and cool-down process. The normalization transmissions ${T}_{21}^0$ for a fixed magnetic field of $H_\text{n}=1.15\,$T are shown in \textbf{\color{antiseeblau100}a}.}
+    \label{fig:analysis_temp_lowbw}
+\end{figure}
+
+Details and parameter of the sample preparation of CPW2, can be found in Table \ref{tab:setup_sampleprep}. In Table \ref{tab:analysis_kittel} you can find the differences in sample preparation and data acquisition for the samples CPW3 and CPW2, compared in Chapter \ref{chapter:physical_findings}.
+
+Furthermore, I want to present some self-written device drivers and packages. First will be the magnet driver IPS120\_10, then the ZNB40 VNA driver for frequency sweeps, followed by the GIR2002 thermometer driver. In the end, you can find my corporate design color package, which maps the given colors in such a way, that homogeneous gradients are achieved. All colors in each data plot in this Thesis are done with this package.
+
+
+\begin{landscape}
+\begin{multicols}{2}
+\begin{table}[H]
+    \centering
+    \caption{Preparation steps of sample CPW2}
+    \vspace{4mm}
+    \begin{tabular}{l|l}
+    \hline
+    \vspace{3mm} substrate & Si wafer with $200\,$nm SiO$_2$\\\hline
+     photoresist & 'AR-P 5350 Photoresist' \cite{APR5300manual}\\
+         & spin coated: $60\,$s at $5000\,$rpm\\
+         & baked: $4\,$min at $95\,^\circ$C\\\hline
+     mask design & 'Inkscape' \cite{inkscapemanual}\\
+         & file: $^*$.png \& 0.71\,\textmu m pixels\\
+         & structure: white on black\\\hline
+     exposure & 'Smart print' \cite{smartprintmanual}\\
+        & import: 'stitch black' \& 'High res.'\\
+        & pixel red. \& field con. cor.: $10$\\
+        & objective \& time: $\times 10$ \& $0.9\,$s\\\hline
+    developement & 'AR 300-26' \cite{AR30026manual}\\
+        & dilution: $1+6$ parts distilled water\\
+        & developement time: by sight, $\approx 40\,$s\\\hline
+    evaporation & $100\,$nm Al (thermal)\\
+        & $32.5\,$nm Co (electron-beam)\\
+        & $100\,$nm Al (thermal)\\\hline
+    \vspace{3mm}lift-off & aceton bath: $\approx 5\,$min at $60\,^\circ$C\\\hline
+    PI layer & spin coated: $90\,$s at $5000\,$rpm\\
+         & pre-baked: $5\,$min at $130\,^\circ$C\\
+     \vspace{3mm}    & vacuum-bake-out \cite{schirm2002}\\\hline
+    CPW & $3\,$nm titanium (electron-beam)\\
+         & $50\,$nm gold (electron-beam)
+    \end{tabular}
+    \label{tab:setup_sampleprep}
+\end{table}
+\begin{table}[H]
+    \centering
+    \caption[Differences in data acquisition for the samples CPW2 and CPW3]{Differences in sample preparation and data acquisition for the samples CPW2 and CPW3. Transmission data are shown in Figure \ref{fig:analysis_kittel} \& \ref{fig:analysis_kittel_volume}. (VNA sweep time means the time needed to obtain all data for a fixed magnetic field.)}
+    \vspace{4mm}
+    \begin{tabular}{r|ll}
+         & CPW2& CPW3\\\hline
+         Co thickness& $32\,$nm & $3\,$nm \\
+         covered in & $2 \cdot 100\,$nm Al& $120\,$nm Cu \\
+         \vspace{3mm}Pi layer & yes& no \\\hline
+         dampers in setup & yes& no \\
+         pre-amplifier & yes& yes (tempered at $25\,^\circ$C) \\
+         \vspace{3mm} $T_\text{FMR}$ & $4\,$K& $\approx 95\,$mK \\\hline
+         $H$ range & $-1.3$ to $1.3\,$T& $-0.1$ to $1.2\,$T\\
+         \vspace{3mm}$\Delta H$ &$0.5\,$mT&$0.5\,$mT\\\hline
+         $f$ range & $2$ to $40\,$GHz& $2$ to $40\,$GHz \\
+         \vspace{3mm}$\Delta f$ & $250\,$MHz& $20\,$MHz \\\hline
+         VNA power &$-5\,$dBm&$-5\,$dBm\\
+         VNA bandwidth & $500\,$Hz&$30\,$Hz \\
+         VNA averaging & $160$& $3$ \\
+         \vspace{3mm}VNA sweep time &$53.1\,$s&$208.5\,$s\\\hline
+         $H_\text{ani}$&$-1.4(38)\,$mT& $32(12)\,$mT\\
+         $M_\text{s}$&$15.9(4)\,$kOe& $9.4(6)\,$kOe
+    \end{tabular}
+    \label{tab:analysis_kittel}
+\end{table}
+\newpage
+
+\begin{lstlisting}[language=Python]
+# -*- coding: utf-8 -*-
+"""
+Current Version from: 04.02.'21
+- Fixes possible 'quenching, when connection is lost' BUG
+- Check for Helium Level Shut Down and Switch Heater
+
+Current Version from: 25.09.'20
+Features:
+- implementing factor for max rate
+
+Current Version from: 06.08.'20
+Features:
+- printer implemented
+
+Version from: 06.07.'20
+Features:
+- negative magnetic field support
+- reducing to function goto with optional rate input
+- change rate on the fly, while in max mode
+- "printer" consistency
+- error if field is to high
+
+@author: Oliver I.
+Many Thanks to: Lukas Kammermeier
+"""
+
+import pyvisa, sys
+import numpy as np
+from time import sleep
+
+##############################################################################
+class IPS120_10():
+    '''
+    # e.g.: Set magnetic field
+    from driver.IPS120_10 import IPS120_10
+    magnet=IPS120_10()
+    magnet.reinitialize()
+    magnet.goto(0.1,factor=.7)
+    magnet.readfield(printer=True)
+    magnet.turn_off()
+    magnet.exit()
+    '''
+    def __init__(self, GPIB_No=25):
+        rm=pyvisa.ResourceManager()
+        inst=rm.open_resource('GPIB0::%i::INSTR'%GPIB_No,
+                              read_termination='\r',
+                              write_termination='\r')
+        inst.timeout=2000
+        self.inst=inst        
+
+    def initialize(self, printer=False):
+        '''
+        Initializes Magnet.
+        '''
+        # Check for Helium Shut Down
+        helium_alarm=int(self.inst.query('X')[6])
+        if helium_alarm>3:
+            sys.exit('Helium Shutdown: Not enough Helium!')
+            
+        # Initializes
+        try:
+            self.inst.write('$C3')     #remote & unlocked        
+            sleep(0.1)
+            self.inst.write('$Q4')     #four digits extended resolution            
+            self.inst.write('$M1')     #set mode, units "tesla", fast   
+            sleep(0.1)
+            self.inst.write('$H1')     #switch heater on
+            sleep(0.1)
+            self.inst.write('$A0')     #hold operation
+            self.inst.heater=True      # switch heater on
+            if printer==True:
+                print('Magnet Initializing...Please Wait 10s')
+            for i in range (10): #wait for 10s
+                sleep(1)
+                pass
+        except:
+            print('ERROR: magnet initialization failed')
+            return False
+        
+        # Check for Switch Heater
+        switch_heater=int(self.inst.query('X')[8])
+        if switch_heater!=1:
+            sys.exit('Error: Switch Heater is not on!')
+        
+        if printer==True:
+            print('Done Initializing')
+
+
+    def turn_off(self, printer=False):
+        '''
+        Closes Connection and makes magnet ready to shut down.
+        '''
+        self.goto(0)
+        sleep(0.1)
+        self.inst.write('$A0')     #hold operation
+        sleep(0.1)
+        self.inst.write('$H0')     #Heater off
+        sleep(0.1)
+        self.inst.write('$C2')     #remote & unlocked
+        self.inst.close()          #close connection with magnet
+        if printer==True:
+            print('Connection to magnet closed, Turn off power!')    
+            
+    # Simple function to read/set the current rate/field
+        # all numbers dimension is T/min
+        # printer=False prevent from printing (default: True)
+        # redundant check if setrate is higher than 0.723 (ScheerIII)
+        # TODO make them consistent!
+        
+    def readrate(self, printer=False):
+        rate=float(self.inst.query('R9')[1:])
+        if printer==True:
+            print('current rate is %5.4f T/min.'%rate)
+        return rate
+    
+    def setrate(self, sweeprate, printer=False):         
+        self.inst.write('$T%4.3f'%sweeprate)
+        sleep(0.1)
+        rate=self.readrate(printer)
+        return rate
+
+    def readfield(self,printer=False):
+        field=float(self.inst.query('R7')[1:])
+        if printer==True:
+            print('current field is %5.4f T'%field)
+        return field
+    
+    def setfield(self, target, printer=False):
+        self.inst.write('$J%f'%target)
+        new_target=float(self.inst.query('R8')[1:])
+        if printer==True:
+            print('target field is %5.4f T'%new_target)
+        #activate "GOTO SET"
+        self.inst.write('$A1')    
+        return new_target
+        
+    def goto(self,target,rate='max', factor=.9, printer=False):
+        '''
+        Ramps with either a given rate, or maximum rate,
+        optional reduced by factor(0<facotr<=1, default:.9).
+        '''
+        if rate=='max':
+            self.goto_max(target, factor, printer)
+        else:
+            self.goto_set(target, rate, printer)
+            
+    def goto_set(self, target, rate, printer=True):
+        '''
+        Ramps to field, with given rate.
+        Approximates remaining time.
+        '''
+        self.setrate(rate,printer)
+        self.setfield(target,printer)
+        check=False
+        while check==False:
+            field=self.readfield(printer)
+            time=60*(abs(target-field)/rate)
+            if np.abs(field-target)< 3e-4:
+                if printer==True:
+                    print('\nTarget Field reached...OK')
+                check=True
+                break
+            else:
+                if printer==True:
+                    print('Field is %6.4f T, remaining time is %.1f s'%(field,time),end='\r')
+                sleep(0.1)
+                pass
+        return field
+
+    def find_pos(self, field, spez_field):
+        '''
+        Help function, to find field segment.
+        '''
+        pos=np.nan
+        len_spez_field=len(spez_field[1:-1])
+        if field is not np.nan:
+            for i in range(len_spez_field-1):
+                if field<=0: check=(field>=spez_field[i+1])&(field<spez_field[i+2])
+                else: check=(field>spez_field[i+1])&(field<=spez_field[i+2])
+                if check: pos=i
+        else: print('Error: No field given to find pos')
+        if pos==np.nan: print('Error: Invalid segment!')
+        return pos
+
+    def goto_max(self, target, factor=.9, printer=True):
+        '''
+        Ramp field with maxiumum rampage,
+        reduced by factor (0<factor<=1, def:.9).
+        Don't quench, when Connection is lost.
+        '''
+    
+        # Scheer III Specification        
+        spez_field=np.array([-np.inf,-12,-9.6,-7.8,7.8,9.6,12,np.inf])
+        spez_rate=np.array([.1205,.2410,.723,.2410,.1205])
+#         # Testing spezification
+#         spez_field=np.array([-np.inf,-.12,-.1,-.08,.08,.1,0.12, np.inf])
+#         spez_rate=np.array([.3,.5,.7,.5,.3])
+    
+        # testing reasonability of factor
+        if (factor<=0)|(factor>1):
+            factor=.9
+            print('Not good: factor = .9 !')
+        if factor>.9:
+            print('Sure?')
+            
+        # check for position and reasonablity target
+        pos_target=self.find_pos(target,spez_field)
+        if pos_target is not np.nan:
+            
+            # check for field
+            field=self.readfield(printer=False)
+            
+            # check if field is reached yet
+            check=False
+            while check==False:
+                
+                # empties anoying buffer
+                try:
+                    self.inst.timeout=100
+                    blubb=self.inst.read_raw()
+                except:
+                    blubb=3
+                self.inst.timeout=2000
+                sleep(.1)
+                
+                # check for field
+                field=self.readfield(printer=False)
+                    
+                # check for segment position
+                pos_field=self.find_pos(field,spez_field)
+                
+                # check for segment position in range
+                if pos_field==np.nan:
+                    print('Aborted: Current magnetic field out of range!')
+                    
+                # set rate
+                rate=spez_rate[pos_field]*factor
+                self.setrate(rate, printer=False)
+
+                # check for segment border, set field
+                if pos_field==pos_target:
+                    self.setfield(target, printer=False)
+                else:
+                    if field<target:
+                        inter=spez_field[pos_field+2]+1e-4
+                    elif field>target:
+                        inter=spez_field[pos_field+1]-1e-4
+                    else:
+                        print('Error: No intermediate Field!')
+                        inter=field
+                    self.setfield(inter, printer=False)
+                
+                # do cosmetics
+                if printer==True:
+                    print('Field: %+07.4f/%+07.4f T'%(field,target),end='\r')
+                        
+                # is it reached yet?
+                if np.abs(field-target)< 1e-4:
+                    check=True
+                    if printer==True:
+                        print('\nField is reached!')       
+                        
+        # check for position and reasonablity target 
+        else:
+            print('Error: Please set reasonable magnetic Field!')
+\end{lstlisting} % IPS120_10 magnet
+
+\begin{lstlisting}[language=Python]
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Jun 26 15:06:25 2020
+
+Bugfix 09.12.2020
+    # fsweep
+    - sweep time -> timeout
+    catch exception for high bandwidth and averaging
+
+current Version 2.0 from 21.11.2020
+Features:
+    - use PyVISA protocoll instead of Rohde/Schwarz protocoll
+    # frequency sweep mode
+    - reducing s_parameter sweep to S21 (due preamplifier)
+    - saving complex and real part seperatly
+    - saving temperature as well
+    - reducing config file to essential
+    - saving bfield with max number of digits
+    - printer option
+    - autoscaling at vna
+    
+@author: Oliver I.
+Many Thanks to: Lukas Kammermeier und Lukas Siedentop
+
+e.g.:
+# Measure f_sweep
+from ZNB40 import ZNB40
+vna=ZNB40(IP='192.168.1.104')
+vna.enter()
+config=vna.setup_fsweep(start=2e6,
+                     stop=4e10,
+                     points=1e3,
+                     bandwidth=1e3,
+                     power=-10,
+                     average=0,
+                     printer=False,
+                     saveconfig=True)
+vna.measure_fsweep(sample_name='test',
+                H=-99.9999,
+                T=0,
+                plotter=True,
+                savefile=False,
+                printer=False)
+vna.exit()
+"""
+
+##############################################################################
+import os
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import json
+from datetime import datetime
+import pyvisa
+
+style='test'
+plt.style.use('driver\%s.mplstyle'%style)
+
+class ZNB40():
+    
+    #### general stuff
+    def __init__(self, IP='192.168.1.104'):
+        # black VISA magic
+        # watch out for VISA and stuff
+        # else dead
+        rm=pyvisa.ResourceManager()
+        inst=rm.open_resource('TCPIP0::'+IP+'::inst0::INSTR')
+        #inst=rm.open_resource('TCPIP0::'+IP+'::hislip0')
+        self.inst=inst
+        self.inst.timeout=1e5
+        
+    def enter(self):
+        # reset the device
+        self.inst.write('*RST')
+        # delete all old traces
+        self.inst.write('CALC:PAR:DEL:ALL')
+        # turn continous measurement off
+        self.inst.write('INITiate1:CONTinuous OFF')
+        # turn Display to remote control
+        self.inst.write('SYSTem:TSLock SCReen')
+        # close soft tool menu
+        self.inst.write('SYSTem:DISPlay:BAR:STOols OFF')
+        # displaying the data increases measurement time 
+        self.inst.write('SYSTem:DISPlay:UPDate OFF')
+        return self
+    
+    def exit(self):
+        # unlock and turn on screen for local operation
+        self.inst.write('SYSTem:TSLock OFF')
+        self.inst.write('SYSTem:DISPlay:UPDate ON')
+        self.inst.write('SYSTem:DISPlay:BAR:STOols ON')
+        return self
+        
+    #### frequency sweep mode
+    
+    def setup_fsweep(self,
+                     sample_name='no_sample_name_provided',
+                     start=2e6,
+                     stop=4e10,
+                     points=1e3,
+                     bandwidth=1e3,
+                     power=-10,
+                     average=0,
+                     printer=False,
+                     saveconfig=True
+                     ):
+        
+        # setup S21 scattering parameter
+        self.inst.write("DISP:WIND:STAT ON")
+        self.inst.write("CALC1:PAR:SDEF 'Tr1', 'S21'")
+        self.inst.write("DISPlay:WINDow:TRAC1:FEED 'Tr1'")
+        
+        # setup configuration
+        self.inst.write("SENSe1:FREQuency:STARt %i Hz"%start)
+        self.inst.write("SENSe1:FREQuency:STOP %i Hz"%stop)
+        self.inst.write("SENSe1:SWEep:POINts %i"%points)
+        self.inst.write("SENSe1:BANDwidth %i Hz"%bandwidth)
+        self.inst.write("SOURce1:POWer %i dBm"%power)
+        time=self.inst.query('SENSe1:SWEep:TIME?')
+        
+        # caring about averaging
+        if average >1:
+            self.inst.write("SENSe1:AVERage:COUNt %i"%average)
+            self.inst.write("SENSe1:AVERage:STATe ON")
+            self.inst.write("SENSe1:AVERage:CLEar")
+            self.inst.write("SENSe1:SWEep:COUNt %i"%average)
+        else:
+            self.inst.write("SENSe1:AVERage:STATe OFF")
+        
+        # sets timeout time between measurments to zero
+        self.inst.write("SENSe1:SWEep:TIME:AUTO ON")
+        #self.inst.write('SYSTem:DISPlay:BAR:STOols OFF')
+        #self.inst.write('SYSTem:DISPlay:UPDate ONCE')
+        
+        # gets maximum timeout time, to prevent errors during long time meas.
+        time=float(self.inst.query('SENSe1:SWEep:TIME?'))
+        if average >1:
+            self.inst.timeout=int((time*average*2.5+10)*1000)
+        else:
+            self.inst.timeout=int((time*2.5+10)*1000)
+            
+        # print configuration parameter
+        if printer==True:
+            print('\nThe parameter are:')
+            print('start frequency = %i Hz'%start)
+            print('stop frequency = %i Hz'%stop)
+            print('sweep points = %i'%points)
+            print('bandwidth = %i Hz'%bandwidth)
+            print('power = %i dBm'%power)
+            print('\nThe cycle will need %.1f s.'%time)
+              
+        # builds config file
+        date=str(datetime.now()) 
+        config={'ZNB40':'frequency sweep',
+                'sample_name':sample_name,
+                'timestamp_setup':date,
+                's_param':'S21',
+                'start':int(start),
+                'stop':int(stop),
+                'points':int(points),
+                'bandwidth':int(bandwidth),
+                'power':power,
+                'average':average,
+                'sweeptime':time}
+            
+        # Save Config File
+        if saveconfig==True:  
+            # append config file to current conig.json 
+            with open('vna_fsweep_config.json','a+') as f:
+                json.dump(config,f,indent=1)
+        
+            if printer==True:
+                print('\nSaved configuration successfully!')
+        return config
+
+    def measure_fsweep(self,
+                config={'sample_name':'no_config_delivered'},
+                H=-99.9999,
+                T=0,
+                plotter=False,
+                savefile=True,
+                printer=False
+               ):        
+        
+        # initialize measurement
+        self.inst.write("INITiate")
+        self.inst.write('*WAI')
+        
+        # gets x-axis/frequency data
+        # freq = self.inst.query('CALC1:DATA:STIM?')
+        # freq=np.fromstring(freq, dtype='float64', sep=',')
+        freq=np.linspace(config['start'],config['stop'],config['points'])
+        
+        # gets S21 parameter and save them as real and imag
+        query_str = "CALC1:DATA:TRACe? 'Tr1', SDAT"
+        sdata = self.inst.query(query_str)
+        data = np.fromstring(sdata, dtype='float64',sep=',')
+        real, imag = data[::2], data[1::2]
+        
+        # builds dataframe with x-axis/frequency
+        dataframe=pd.DataFrame(data={'freq':freq,
+                                     'Re_S21':real,
+                                     'Im_S21':imag},
+                               dtype='float64')
+        
+        self.inst.write('SYSTem:DISPlay:UPDate ONCE')
+        self.inst.write('SYSTem:DISPlay:BAR:STOols OFF')
+        self.inst.write("DISP:TRAC1:Y:AUTO ONCE")
+        # plots plot to lookylook
+        if plotter==True:
+            plt.figure(1)
+            plt.plot(freq,10*np.log(np.abs(real+imag*1j)),'.',
+                    label=str(datetime.now()))
+            plt.grid()
+            plt.title('Insertion loss of forward transmission')
+            plt.ylabel('$|S_{21}|$ [dB]')
+            plt.xlabel('$f$ [Hz]')
+            plt.legend(loc=1)
+            
+        if savefile==True:
+            if not os.path.exists('fsweep_data'):
+                os.makedirs('fsweep_data')
+            Hstring='H%07i'%int(float(H)*10000)
+            name='fsweep_data/%s_%s_T%05i_%s.csv'%(config['sample_name'],
+            Hstring,int(float(T)*1000),str(str(datetime.now())).replace(':','-')[:-7])
+            
+            # save data
+            pd.DataFrame.to_csv(dataframe,name)
+            del dataframe
+            if printer==True:
+                print('\nSaved Data successfully!')
+        return freq, real, imag
+\end{lstlisting}
+
+\begin{lstlisting}[language=Python]
+import serial
+import numpy as np
+import os
+from time import sleep
+from datetime import datetime
+"""
+author: Oliver Irtenkauf
+date: 21.01.2021
+
+TODO:
+- datetime format einheitlich. check for easy read function.
+- check for filt: off
+- check fer seri setting
+
+Usage of GIR2002, with EBW3 adapter, thermo couple Type K
+TC an Pin 10 und 11, Kabel: grün/weiß -> TypK, more @ evaporater cabinett
+setup rear side + button2:
+InP: t.tc
+SEns: NiCr-Ni (type K) [-70..-.1..250°C, -200..1..850°C]
+rES: 0.1
+Unit: °C
+FiLt: 0.01
+
+(Explanation: this digital filter is a digital replica of a low pass filter.
+Note: If the digital filter is “off” the internal mains hum suppression of the GIR2002 is deactivated. This adjustment is ideal for fastest response to even small changes of the signal, but the display and the analog output gets more turbulent. Therefore the filter should set to at least 0.01 for „ordi-nary‟ application A filter value of at least 0.1 is recommended for the input type S.)
+
+rear side + button1:
+outP: no
+
+manuals:
+GIR2002_e.pdf
+GMH3xxx_interface_without_DLL.pdf
+"""
+
+##############################################################################
+class GIR2002(serial.Serial):
+    '''
+    # Example:
+    from drivers.GIR2002 import GIR2002
+    thermo=GIR2002(com_port=11)
+    thermo.logging(path='thermo_data',
+                   name='_pos_is_free_hanging',
+                   avg=100,
+                   sleeper=0,
+                   show_progress=True)
+    # thermo.close()
+    '''
+    def __init__(self, com_port=11):
+        '''
+        initialize black serial magics
+        '''
+        serial.Serial.__init__(self, 'COM%i'%com_port)
+        self.baudrate = 4800
+        self.bytesize = serial.EIGHTBITS
+        self.parity = serial.PARITY_NONE
+        self.stopbits = serial.STOPBITS_ONE
+        self.timeout = 1
+        self.xonxoff = False
+        self.rts = False
+        self.dtr = True
+        self.inter_byte_timeout = None
+        self.reset_input_buffer()
+        self.reset_output_buffer()
+        self.breaker=False
+        
+        
+    def exit(self):
+        self.close()
+        
+    def value(self):
+        '''
+        get Thermodata.
+        try 'GMH3xxx - Serial Interface' 
+        aka GMH3xxx_interface_without_DLL.pdf
+        bugs with decimal point. just ignore,
+        because. \pm 0.1°C is as good as it gets, with Type K
+        '''
+        try:
+            self.write(bytearray((254,0,61))) #255 - address 1, command 0, crc 61
+            response=bytes(self.read(6))
+            integer=(256*(255-response[3])+response[4])&16383-2048
+            value=integer/10
+    #         spez={'49152':1000, '32768':100, '16384':10, '0':1}
+    #         decimal_point='%i'%((256*255-response[3])&49152)
+    #         value=integer/spez[decimal_point]
+    #         print(value, end='\r')
+        except:
+            value=np.nan
+        return value
+
+    def show_value(self):
+        '''
+        simple live monitoring
+        '''
+        i=0
+        while True:
+            i=(i+1)%4
+            progress='\\-/|'
+            T=self.value()
+            if self.breaker==True:
+                break
+            if T is not np.nan:
+                print('%s T = %2.1f °C  '%(progress[i],T), end='\r')
+            else:
+                print('%s lost signal  '%progress[i], end='\r')
+    
+    def average_value(self, avg=10, sleeper=.01):
+        '''
+        simple average method to decrease data pillage
+        '''
+        if avg>1:
+            T=0
+            for i in range(avg):
+                sleep(sleeper)
+                T=T+self.value()
+            T=T/avg
+        elif avg==1 or avg==0:
+            sleep(sleeper)
+            T=self.value()
+        else:
+            print('try reasonable number!')
+            T=np.Nan
+        return T
+    
+    def logging(self,
+                path='thermo_data',
+                name='',
+                avg=100,
+                sleeper=0,
+                show_progress=True):
+        '''
+        simple temperature logging.
+        file structure, like BlueFors T logging
+        day,time,T [°C]
+        '''
+        if not os.path.exists(path):
+            os.makedirs(path)
+        name='GIR2002_log%s_%s.csv'%(name,
+             str(str(datetime.now())).replace(':','-')[:-7])
+        i=0
+        progress='\\-/|'
+        while True:
+            if self.breaker==True:
+                break
+            try:
+                T=self.average_value(avg=avg, sleeper=sleeper)
+                if show_progress is True:
+                    i=(i+1)%4
+                    if T is not np.nan:
+                        print('%s T = %2.3f °C  '%(progress[i],T), end='\r')
+                    else:
+                        print('%s lost signal  '%progress[i], end='\r')
+                if T is not np.nan:
+                    now=datetime.now()
+                    now=now.strftime('%d-%m-%y,%H:%M:%S')
+                    with open('%s/%s'%(path,name),'a') as fd:
+                        fd.write('%s,%f\n'%(now,T))
+            except:
+                print('no signal')
+\end{lstlisting}
+
+\begin{lstlisting}[language=Python]
+'''version from 11.03.21
+author: Oliver Irtenkauf
+
+features: Coporate Design Colors of University Konstanz
+
+for images with a gradient from black to blue to white use cpd.images(color='seeblau')
+you can choose from the colors: color='seeblau' (default) or 'magenta' and 'grey'
+you can invert those color bars by setting cpd.images(inverse=True)
+
+for curves with a color gradient from blue to grey use cpd.curves()
+you can choose from the colors: color='seeblau' (default) or 'magenta' and 'black'
+in case you want the exact seeblau100, seeblau65 and seeblau35 colors use
+cpd.curves(color='seeblau')(1-xx/100)
+
+known bugs:
+cpd.curves()(1)=cpd.curves()(0)
+
+'''
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib import gridspec, cm
+from matplotlib.colors import ListedColormap
+try:
+    plt.style.use('thesis_half.mplstyle')
+except:
+    print('no style found')
+
+def curves(color='seeblau'):
+    # corporate design (for curves)
+    if color=='seeblau':
+        H,V,S=.5409,.8784,np.linspace(1,0,256)
+        R,G=V*(1-S),V*(1-S*(H*6-np.floor(H*6)))
+        B,A=V*np.ones(256),np.ones(256)
+    elif color=='magenta':
+        H,V,S=.5409,.8784,np.linspace(1,0,256)
+        G,B=V*(1-S),V*(1-S*(H*6-np.floor(H*6)))
+        R,A=V*np.ones(256),np.ones(256)
+    elif color=='black':
+        R=np.linspace(0,.65,256)
+        G,B=R,R
+        A=np.ones(256)
+        S=np.linspace(1,0,256)
+    else:
+        print("Please choose color from: 'seeblau', 'magenta' or 'black'")
+    cpd_curves = ListedColormap(np.array([R,G,B,A]).T) 
+    return cpd_curves
+
+def images(color='seeblau', inverse=False):
+    # corporate design (for images)
+    if color=='seeblau':
+        R=np.array([-89,0,89,160,200,255])/256
+        G=np.array([0,154,182,211,229,292])/256
+        B=np.array([0,209,220,230,239,305])/256
+        x=np.array([0,2.4,2.9,3.7,4.2,5])/5
+        polyRcoeff=np.polyfit(x,R,deg=4)
+        polyGcoeff=np.polyfit(x,G,deg=4)
+        polyBcoeff=np.polyfit(x,B,deg=4)
+    elif color=='magenta':
+        R=np.array([0,209,220,230,239,305])/256
+        G=np.array([-89,0,89,160,200,255])/256
+        B=np.array([0,154,182,211,229,292])/256
+        x=np.array([0,2.4,2.9,3.7,4.2,5])/5
+        polyRcoeff=np.polyfit(x,R,deg=4)
+        polyGcoeff=np.polyfit(x,G,deg=4)
+        polyBcoeff=np.polyfit(x,B,deg=4)
+    elif color=='grey':
+        R=np.array([0,209,220,230,239,255])/256
+        G=np.array([0,0,89,160,200,255])/256
+        B=np.array([0,154,182,211,229,255])/256
+        x=np.array([0,2,2.9,3.7,4.2,5])/5
+        RGB=(R+G+B)/3
+        R,G,B,A=RGB,RGB,RGB,RGB
+        polyRGBcoeff=np.polyfit(x,RGB,deg=4)
+        polyRcoeff=polyRGBcoeff
+        polyGcoeff=polyRGBcoeff
+        polyBcoeff=polyRGBcoeff
+    else:
+        print("Please choose color from: 'seeblau','magenta' or 'grey'")
+    
+    xx=np.linspace(0,1,256)
+    polyRcoeff=np.polyfit(x,R,deg=4)
+    polyGcoeff=np.polyfit(x,G,deg=4)
+    polyBcoeff=np.polyfit(x,B,deg=4)
+    polyR=np.poly1d(polyRcoeff)(xx)
+    polyG=np.poly1d(polyGcoeff)(xx)
+    polyB=np.poly1d(polyBcoeff)(xx)
+    mapped=np.array([polyR.T,polyG.T,
+                    polyB.T,np.ones(256).T]).T
+    mapped[mapped<=0]=0
+    mapped[mapped>=1]=1
+    cpd_img=ListedColormap(mapped)
+    if inverse is not False:
+        cpd_img=ListedColormap(np.flip(mapped,axis=0))
+    return cpd_img
+\end{lstlisting}
+\end{multicols}
+\end{landscape}

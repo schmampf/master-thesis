@@ -1,0 +1,43 @@
+\chapter{Results and Diskussion} \label{chapter:physical_findings}
+In this Chapter, I will compare two datasets recorded for samples CPW2 and CPW3. Although many parameters differ in sample preparation and data collection (see Table \ref{tab:analysis_kittel} in the Appendix), these two samples are interesting for investigating the effect of two different Co thicknesses $d_\text{CPW2}=32.5\,$nm \& $d_\text{CPW3}=3\,$nm. Finally, I will use Kittel's equation \ref{formula:kittel3} to quantify the saturation magnetization and anisotropy field.
+
+First, I will focus on a qualitative description of the two datasets. Figure \ref{fig:analysis_kittel_volume} shows the transmission of the two datasets, sample CPW2 (b) and CPW3 (c).
+Well connected minima can be observed in the FMR typical \rotatebox[origin=c]{270}{$\pmb{\succ}$}-shape. This shape already qualitatively fits the Kittel formula for an in-plane sample geometry of
+Co, see below. We can observe the already known noise induced by laboratory temperature variations in the form of typical vertical lines in both measurements. The CPW3 dataset was recorded over a much longer period of time, therefore the deep dark lines are much more frequent. Compared to the CPW2 dataset, we can also better observe a general day-dependent drift. As a reminder, the distance between two dark lines corresponds approximately to a recording time of $12\,$h. This behavior is consistent with Section \ref{sec:analysis_temp}.
+
+The normalization transmissions $T^0_{21}$ are shown in Figure \ref{fig:analysis_kittel_volume}\,a. The first thing to notice here is the difference in signal size of about $20\,$dB. This is due to the fact that the CPW3 dataset was measured without the two $-10\,$dB dampers (see Section \ref{sec:setup_setup}). Next noticeable is the seemingly much smoother curve of the CPW2 sample. However, this was only measured at a frequency resolution of $250\,$MHz, while CPW3 was measured at a resolution of $20\,$MHz. This explains the apparent lower noise level.
+
+\begin{figure}[b]
+    \centering
+    \import{analysis/kittel}{kittel_volume.pgf}
+    \caption[Normalized transmission of samples CPW2 and CPW3]{Normalized transmission as a function of frequency $\omega/2\pi$ and magnetic field $\mu_0H$. In panel \textbf{\color{antiseeblau100}a} the normalization transmission $T_{21}^0$, in \textbf{\color{seeblau100}blue} for CPW2 and in \textbf{\color{seeblau65}light blue} for CPW3, for a magnetic field of $H_\text{n}=1.1\,$T are shown. The two measured transmission maps $T_{21}^\text{n}$ for samples CPW2 with $32.5\,$nm Co and CPW3 with $3\,$nm Co are shown in panel \textbf{\color{antiseeblau100}b} \& \textbf{\color{antiseeblau100}c}. Additionally, in \textbf{\color{antiseeblau100}magenta} the theory curve for $\omega_\text{res}^\circ$ (eq. \ref{eq:analysis_kittel_sphere}) is shown. The respective insets zoom in on the features in which the correlation of the data and the theory is well evident.}
+    \label{fig:analysis_kittel_volume}
+\end{figure}
+
+Especially for the CPW2 measurement, a resonance around $18\,$GHz is particularly noticeable. The typical cavity length, corresponding to $18\,$GHz\footnote{Other measurements with higher frequency resolution on the same sample tend to detect this feature at $18,10(2)\,$GHz.} is calculated as $\ell=c_0/2f=1,65\,$cm. This corresponds to the distance between the plate to which the sample is mounted and the copper cup that shields the sample from thermal radiation. In the CPW3 sample, there is a similar feature at $16,86\,$GHz, which corresponds to a length of $1,76\,$cm. Note also the expression of the dips in the normalization transmission of the two measurements. For the CPW2 sample, the dip at $18\,$GHz is very pronounced, while for the CPW2 sample, the dip at $16.86\,$GHz is almost lost in the noise. It is conceivable that the cup was not screwed on quite correctly and is slightly tilted. As a result, the finesse of the cavity of sample CPW3 is not as good as that of sample CPW2 and thus there is much less transmission loss.
+
+With the resonance just discussed, another conspicuous feature can be observed on the maps further out at $642\,$mT (CPW2) and at $597\,$mT (CPW3), respectively. This is most likely a volume-specific ferromagnetic resonance effect. For clarity, I have plotted the theoretical Kittel formula, for a spherical sample geometry, given by
+\begin{align}
+    \omega_\text{res}^\circ=\gamma\mu_0H \label{eq:analysis_kittel_sphere}
+\end{align}
+in magenta. The signal strength is much more pronounced in CPW2, with $d_\text{CPW2}=32.5\,$nm Co, which is in good agreement with a volume-dependent effect. Nevertheless, we should keep in mind that it could also be a Zeeman splitting of some state, since it has the same shape.
+
+Next, I want to quantify the saturation magnetization and the uniaxial anisotropy field. For this I use the positions of the minima obtained in Section \ref{sec:data_processing} and marked in Figure \ref{fig:analysis_kittel}. I plot the minima and fit them with the Kittel formula for an in-plane sample geometry in Figure \ref{fig:analysis_kittel_fit}. 
+\begin{figure}[b]
+    \centering
+    \import{analysis/kittel}{kittel_fit.pgf}
+    \caption[Fitted transmission minima of samples CPW2 and CPW3]{Transmission minima obtained as a function of frequency and magnetic field for samples CPW2 (\textbf{\color{seeblau100}blue}) and CPW3 (\textbf{\color{antiseeblau100}magenta}). The minima were fitted with the Kittel formula $\omega_\text{res}^\parallel$, according to equation \ref{eq:analysis_kittel_parallel} (\textbf{\color{seeblau65}light blue} and \textbf{\color{antiseeblau65}light magenta}). For sample CPW2, the uniaxial anisotropy field is $\mu_0H_\text{ani}=-1.4(38)\,$mT and the magnetization is $M_\text{s}=15.9(4)\,$kOe. For sample CPW3, $\mu_0H_\text{ani}=32(12)\,$mT and $M_\text{s}=9.4(6)\,$kOe are found.}
+    \label{fig:analysis_kittel_fit}
+\end{figure}
+This formula is given by
+\begin{align}
+    \omega_\text{res}^\parallel=\gamma\mu_0 \sqrt{(H+H_\text{ani})(H+H_\text{ani}+M_\text{s})}\,.\label{eq:analysis_kittel_parallel}
+\end{align}
+
+% This procedure was developed using the CPW3 dataset and could be easily applied to the CPW2 dataset.
+
+The obtained saturation magnetizations are $M_\text{s}=15.9(4)\,$kOe / $\mu_0M_\text{s}=1.59(4)\,$mT for CPW2 and $9.4(6)\,$kOe for CPW3\footnote{The magnetization $M$ is usually written in $1\,$A$/$m$=4\pi\cdot 10^{-3}$Oe, the magnetic field $\mu_0H$ in Tesla $1\,$T$=10^4\,$Gs. However, the magnetic field can be written as $\mu_0H($Gs$)=\mu_0\cdot H($Oe$)$.}.
+This is in contrast to measured magnetization of Co on GaAs substrate by Tinouche et al. They measured an increase in magnetization to smaller Co film thicknesses, $20\,$nm Co $\overset{\wedge}{=}16.7\,$kOe and $35\,$nm Co $\overset{\wedge}{=}7.5\,$kOe.
+Jamali et al. report a saturation magnetization of $13.8\,$kOe for a $1\,$nm thick Co film sputtered on graphene. Asu et al. report a saturation magnetization of $17.3\,$kOe for nano-crystalline bulk Co. All of these values are on the same order of magnitude as the measured saturation magnetizations. \cite{Tinouche2015,Jamali2014,Aus1998}
+
+The uniaxial anisotropy field $H_\text{ani}$ for the CPW2 sample is $-1.4(38)\,$mT for the CPW3 sample $H_\text{ani}=32(12)$mT. This can be explained in terms of the form anisotropy, which increases for smaller thickness confinement of the sample geometry. Thus, it is expected to find a larger fraction of the volumetric resonance in sample CPW2, but as well as a lower anisotropy. In contrast, in the Co layer in sample CPW3, which is thinner by a factor of 11, the volume-specific fraction of the resonance is hardly measurable and a much higher anisotropy is observed respectively. Alameda et al. have found uniaxial anisotropy fields of $1.5$, $3$ and $15\,$mT for Co thicknesses of $100$, $45$ and $15\,$nm. Both the order of magnitude and the general trend are confirmed by my measurements. \cite{ALAMEDA1996}

@@ -1,0 +1,145 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                     %
+% Style Add-On für das ThemeKonstanz mit dem          %
+% Corporate Design der Universität Konstanz           %
+%                                                     %
+% Stand: 14.09.2016 - Michael Brendle (Version 0.4)   %
+%                                                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Dies ist ein Style Add-On für das ursprüngliche Corporate
+% Design der Universität Konstanz. Dabei werden die
+% Überschriften der Kapitel, der Abschnitte, der Unter-
+% Abschnitte und des Unterunterabschnittes geändert.
+%
+% Dieser Style stammt aus meiner Bachelorarbeit von 2015
+% und dient als zusätzliche Option beim Gestalten von
+% Abschlussarbeiten.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Chapter-Ueberschrift neu                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Paket: titlesec
+%
+% ￼\titleformat{command}[shape]{format}{label}{sep}{before}[after]
+%
+%   bspw. command:  \chapter, \section, \subsection, ....
+%
+% Mehr findest man auch in der Dokumenten des titlesec Paketes:
+%
+%   http://www.ctex.org/documents/packages/layout/titlesec.pdf
+
+\titleformat{\chapter}% command
+{\gdef\chapterlabel{}\selectfontsize{16pt}}% format (Definitionen, Schriftgroesse, ...)
+{\gdef\chapterlabel{\thechapter\ }}% label (Label erhalten; hier: \thechapter)
+{0pt}% sep
+{%
+% Hier kann man jetzt den "Kopf" neu festlegen. Wie oben, verwende ich wieder
+% tikz. Am Ende wird es ungefaehr so aussehen:
+%
+%           KAPITEL 1
+%           _________
+%
+%       Name des Kapitels
+%
+% Diesmal nehme ich bei der Länge auch die Nummerierung dazu.
+\settowidth{\kapitelwidth}{\normalfont\large\sffamily CHAPTER \chapterlabel}%
+\setlength{\linestart}{0.5\textwidth - (0.5\kapitelwidth)}%
+\setlength{\lineend}{0.5\textwidth + (0.5\kapitelwidth)}%
+\noindent\begin{tikzpicture}[remember picture,overlay]%
+\begin{scope}[font=\LARGE\bfseries, anchor=center]%
+\draw [black, fill=black, thick] (\linestart,-0.8) -- (\lineend,-0.8);%
+% #1 ist in diesem Fall der Name des Kapitels.
+\node at (0.5\textwidth,-1.5) {\normalfont\huge\sffamily\mdseries #1};%
+% Und sollte es ein Kapitel ohne Nummerierung (mittels \chapter*) sein, wie bspw.
+% bei mir das Literaturverzeichnis, dann moechte ich natuerlich oben kein KAPITEL 
+% stehen haben. Deshalb hier die if-Abfrage.
+\ifx\chapterlabel\empty\else\node at (0.5\textwidth,-0.5) {\normalfont\large\sffamily CHAPTER \chapterlabel};\fi%
+\end{scope}%
+\end{tikzpicture}  %
+}% before
+
+
+% titlespacing ist aus dem gleichen Paket. Hier wird der Abstand nach links, 
+% oben, unten und rechts festgelegt.
+%
+%   \titlespacing*{command}{left}{beforesep}{aftersep}[right]
+%
+
+\titlespacing*{\chapter}{0pt}{32pt}{72pt}%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Section-Ueberschrift neu                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\titleformat{\section}%
+{\gdef\chapterlabel{}\selectfontsize{14pt}\bfseries}%
+{\gdef\chapterlabel{\thesection\ }}
+{0pt}%
+{%
+% Section-Ueberschrift sieht bei mir sehr normal aus, z.B.:
+%
+% 2.2 MongoDB Internals
+%
+% Schriftgroesse hier: large
+\noindent\begin{tikzpicture}[remember picture,overlay]%
+\begin{scope}[font=\normalfont\Large\sffamily, anchor=base west]%
+\node at (-0.13,0) {\chapterlabel};%
+\node at (1.2,0) {#1};%
+\end{scope}%
+\end{tikzpicture}%
+}
+\titlespacing*{\section}{0pt}{28pt}{20pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Subsection-Ueberschrift neu                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\titleformat{\subsection}
+{\gdef\chapterlabel{}\selectfontsize{12pt}\bfseries}
+{\gdef\chapterlabel{\thesubsection\ }}
+{0pt}
+{%
+% Subsection-Ueberschrift ist bei mir mit einer gestrichelten
+% Linie unter der Nummerierung und dem Namen.
+%
+% 2.2.3 Extents
+% -------------
+%
+% Zunaechst Laenge des kompletten Textes.
+\settowidth{\textwidthnew}{\normalfont\large\sffamily #1}%
+% Dann hardgecodeter Platzhalter fuer die Nummerierung.
+\setlength{\lineend}{\textwidthnew + 1.4cm}%
+\noindent\begin{tikzpicture}[remember picture,overlay]
+% Gestrichelte Linie unterhalb der Nummerierung und dem Namen.
+\draw [black, fill=black, thick, dashed] (0,-0.18) -- (\lineend,-0.18);
+\begin{scope}[font=\normalfont\large\sffamily, anchor=base west]
+% Nummerierung.
+\node at (-0.13,0) {\chapterlabel};
+% Name.
+\node at (1.2,0) {#1};
+\end{scope}
+\end{tikzpicture}  
+}
+\titlespacing*{\subsection}{0pt}{24pt}{20pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Subsubsection-Ueberschrift neu                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Gleiches Prinzip wie beim Kapitel
+
+\titleformat{\subsubsection}
+{\selectfontsize{12pt}\gdef\chapterlabel{}}
+{\gdef\chapterlabel{\thesubsubsection}}
+{0pt}
+{%
+\normalfont\sffamily%
+\ifx\chapterlabel\empty#1\else\chapterlabel~#1\fi%
+}
+\titlespacing*{\subsubsection}{0pt}{24pt}{12pt}
