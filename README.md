@@ -6,3 +6,5 @@ A quantitative correlation between ferromagnetic resonance frequency and applied
 ## Technical Note
 
 I made a special emphasis on the design. I used the Universität Konstanz Corporate Design. In addition to the official "seeblau", I used a magenta color for emphasis. I got the rgb values by switching the "seeblau" rgb values.
+
+For writing I used overleaf.com. Back then I didn't know how to use git. Never to old to know, never told to grow.
