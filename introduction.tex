@@ -1,0 +1,22 @@
+\chapter{Introduction}
+
+The field of spintronics utilizes the targeted manipulation of spin currents. The goal is to build devices with high energy efficiency either for large computer clusters or for quantum mechanical applications. The physical concept of superconductivity comes in handy at this point, but raises the question of how to specifically manipulate the spin of the superconducting current (supercurrent). As a consequence, the interface between superconductor (S) and ferromagnet (F) is of great interest.
+
+When considering conventional superconductivity, according to Bardeen, Cooper \& {Schrieffer\,\,\cite{BCS1957}}, Cooper pairs consist of two electrons with opposite momentum and spin. Due to the total spin $S=0$ rapid dephasing of the Cooper pair occurs in ferromagnets within only a few nanometers and therefore long-range supercurrents are forbidden within them.
+
+However, according to Fulde, Ferrel, Larkin \& Ovchinnikov \cite{FF1964, LO1969} Cooper pairs can come in triplet states with total spin $S=1$. Antiparallel spin pairs ($S_z=0$) oscillate in the external magnetic field between antiparallel singlet and triplet states during their rapid dephasing. An external magnetic field has no pair-breaking effect on parallel triplet pairs ($S_z=\pm 1$), resulting in much slower dephasing, which is why they are also called long-range spin triplets. A schematic of the different Cooper pairs is shown in Figure \ref{fig:intro_triplet}. As a consequence, a ferromagnet of sufficient size can be used as a spin polarizer for supercurrents if long-range spin triplets are present. 
+
+Besides the static excitation of spin-triplet pairs by complex interlayers  \cite{Keitzer2006, Robinson2010, Kalcheim2014, eschrig2015}, this should also be possible in a dynamical system by magnon absorption. This was predicted by Hikino et al. \cite{Hikino2007,Hikino_2011} and provided with evidence by Jeon et al. \cite{Jeon2018}. Subsequently, this means that a long-range spin current can be induced through a S/F/S Josephson contact by microwave irradiation at the frequency of ferromagnetic resonance (FMR) without the need for special interface preparation. 
+
+In summary, I am interested in the ferromagnetic properties of such an S/F/S contact. In this thesis I share with you my results on resolving the FMR of thin Co films with broadband measurements at different in-plane magnetic fields and cryogenic temperatures.
+
+First, I will recall magnetization dynamics theory that leads to the description of FMR.  Then, I will present the samples and the setups used in my experiments. Next, I will present my more technical findings related to encountered technical problems during my measurements. Finally, I will also discuss the magnetization properties obtained by FMR measurements.
+
+\begin{figure}[b]
+    \centering
+    \vspace{-2mm}
+    \import{theory/triplet}{triplet3.pdf_tex}
+    \vspace{-2mm}
+    \caption[Scheme of singlet and triplet Cooper pair states]{Schematic of the singlet ($S=0$) and triplet ($S=1$) Cooper pair states. The precession cones of the spins in the externally applied magnetic field along $z$ are shown in \textbf{\color[rgb]{0.5276,0.5276,0.5276}grey} and the two single spins in \textbf{\color{antiseeblau100}magenta} and \textbf{\color{seeblau100}blue}. Depending on their orientation, the total spin of a Cooper pair can have a finite $S_z=\pm 1$ or vanishing $z$-component $S_z=0$. \cite{eschrig2015}}
+    \label{fig:intro_triplet}
+\end{figure}

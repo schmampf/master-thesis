@@ -1,0 +1,171 @@
+% Dokumentenklasse scrreprt                             %
+\documentclass[11pt, rgb]{scrreprt}
+\RequirePackage{etex} % is required to prevent stuff
+\usepackage{csquotes} % Bibtex and language stuff
+
+\usepackage{rotating}
+\usepackage{lmodern}
+
+\hyphenation{Bei-stand}
+\hyphenation{Su-pra-strom}
+\hyphenation{pro-gress}
+
+% weniger Farbe dann Addons
+% \usepackage{corporatedesign/themeKonstanzXelatexAddOn} % XeLaTeX mit Schriftart Arial, VOR dem Standardpaket importieren
+\usepackage{corporatedesign/themeKonstanz} % Muss immer verwendet werden (Standardpaket)
+% \usepackage{corporatedesign/themeKonstanzStyleAddOn} % Style Add-On für andere Überschriften, NACH dem Standardpaket importieren
+
+% \setstocksize{297mm}{210mm} % or format a4
+\format{a4} %A4, vllt. A5?
+
+% Dokumentinformationen        
+\date{\today}
+\year{2021}
+\author{Oliver Irtenkauf}
+%\title{\selectfontsize{32pt}\flushright\markieren{Electronic transport in}{superconducting ferromagnetic}{hetero-structures}{under microwave irradiation}}
+\title{Electronic transport in superconducting ferromagnetic hetero-structures under microwave irradiation}
+\title{Broadband ferromagnetic resonance measurements\\on thin cobalt films at low temperatures}
+\subtitle{Master's Thesis}
+\unisection{Faculty of Science}
+\department{Department of Physics}
+\supervisorOne{Prof. Dr. Elke Scheer}
+\supervisorTwo{Prof. Dr Angelo Di Bernardo}
+
+% Kopf und Fusszeile           
+\headFoot{9}
+
+% use bibliography.bib
+\usepackage[backend=biber, sorting=none, maxbibnames=99]{biblatex}
+\addbibresource{bibliography.bib}
+
+% For blank page
+\usepackage{afterpage}
+\newcommand\blankpage{
+    \null
+    \thispagestyle{empty}
+    \addtocounter{page}{-1}
+    \newpage
+    }
+
+% for formular
+\usepackage{amsmath}
+
+% blindtext
+\usepackage{subcaption}\usepackage{blindtext}
+
+%\renewcommand{\thesubfigure}{\roman{subfigure}}
+
+% import inkscape
+\usepackage{import}
+\usepackage{textcomp}  %\textmu
+% \graphicspath{setup/}
+
+% renew vec
+\usepackage{amsmath}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\newcommand{\ima}[0]{\overset{\hspace{0.9mm}\text{\scalebox{0.7}{$\circ$}}}{\imath}}
+
+% for python code
+\usepackage{listings}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.95}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{seeblau100},
+    keywordstyle=\color{antiseeblau100},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{seeblau65},
+    basicstyle=\ttfamily\tiny,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+\usepackage{multicol}
+\setlength{\columnsep}{30pt}
+\usepackage{pdflscape}
+\interfootnotelinepenalty=10000
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Begin of Document                                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+%\afterpage{\blankpage}
+\thesistitlepage[language=english]{Master's Thesis}
+
+% \afterpage{\blankpage}
+% % \unititlepage[graphic=graphics/Snap-3227.jpg]{}
+% \unititlepagey[graphic=corporatedesign/title graphics/rose1.jpg]{}
+% \afterpage{\blankpage}
+% \unititlepage[graphic=corporatedesign/title graphics/rose1.jpg]{}
+
+\pagenumbering{Roman}
+
+\include{Abstract}
+
+% inspirational quote
+\newpage\null\vfill\begin{center}
+{\selectfontsize{14pt}\underline{\textbf{Kleines Statement}
+\footnote{Kristiane Allert-Wybranietz ($^*$1955)}}}%, Trotz Alledem
+\vspace{0.8cm}\\Hineinflie\ss en\\in die Formen,\\die sich stellen.\\
+Sich aber nicht\\formen lassen\\und auf keinen Fall\\erhärten.\\
+\vspace{2mm} Das wäre\\Leben\\für mich.\\\vspace{6cm}\ \\
+\end{center}\vfill
+
+\tableofcontents
+
+
+
+
+\clearpage 
+\pagenumbering{arabic}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Body of Document                                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{introduction}
+\include{theory/theory}
+\include{setup/setup}
+\include{analysis/technical_findings}
+\include{analysis/physical_findings}
+\include{conclusion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ending of Document                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\pagenumbering{roman}
+
+\include{Appendix}
+% \include{appendix_unused}
+
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+
+\begingroup
+\let\clearpage\relax
+\listoftables
+%\addcontentsline{toc}{chapter}{List of Tables}
+\endgroup
+
+\newpage
+\addcontentsline{toc}{chapter}{References}
+\printbibliography[title={References}]
+
+\include{Acknowledgments}
+
+\end{document}
+
+% Erklärung, dass ich alles selber gemacht habe.
+%https://www.uni-konstanz.de/typo3temp/secure_downloads/54287/0/0bf36d74f89cfc260ff16ebfa627580cc000ac86/Erklaerung_Abschlussarbeit.pdf

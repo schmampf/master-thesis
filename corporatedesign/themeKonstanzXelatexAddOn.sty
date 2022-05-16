@@ -1,0 +1,23 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                     %
+% XeLaTeX Add-On für das ThemeKonstanz mit dem        %
+% Corporate Design der Universität Konstanz           %
+%                                                     %
+% Stand: 14.09.2016 - Michael Brendle (Version 0.4)   %
+%                                                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Dieses XeLaTeX Add-On kann geladen werden, wenn
+% die Haupt-Tex-Datei mit XeLaTeX kompiliert werden möchte.
+% Dies hat den Vorteil, dass die Systemschrift Arial
+% eingebunden wird. Dies wird vor allem beim verwenden
+% des Corporate Designs der Universität Konstanz empfohlen.
+
+\usepackage{xunicode}
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+
+\newfontfamily\arialfamily{Arial}
+
+\setmainfont{Arial}
+\setsansfont{Arial}
